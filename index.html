@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winnipeg School District</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    min-height: 100vh;
+    height: 100%;
+  }
+
+  #tos-overlay {
+    position: relative;
+    min-height: 100vh;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1.5rem;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tos-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    max-width: 480px;
+    width: 100%;
+    padding: 2.5rem 2rem;
+  }
+
+  .tos-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.25rem;
+    color: #1a1a1a;
+  }
+
+  .tos-tagline {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .tos-divider {
+    height: 1px;
+    background: #ebebeb;
+    margin-bottom: 1.5rem;
+  }
+
+  .tos-section-title {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 0.75rem;
+  }
+
+  .tos-rules {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .tos-rules li {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.6;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f2f2f2;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  .tos-rules li:last-child { border-bottom: none; }
+
+  .tos-dot {
+    width: 5px;
+    height: 5px;
+    background: #ccc;
+    border-radius: 50%;
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .tos-age-note {
+    font-size: 0.82rem;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.5;
+  }
+
+  .tos-agree-btn {
+    width: 100%;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+
+  .tos-agree-btn:hover { background: #333; }
+  .tos-agree-btn:active { transform: scale(0.98); }
+
+  .tos-footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #bbb;
+  }
+
+  #site-content {
+    display: none;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div id="tos-overlay">
+  <div class="tos-card">
+    <div class="tos-logo">Winnipeg School District</div>
+    <div class="tos-tagline">Games Website</div>
+
+    <div class="tos-divider"></div>
+
+    <div class="tos-section-title">Before you play</div>
+
+    <ul class="tos-rules">
+      <li><span class="tos-dot"></span>This site is for personal use during break times, lunch, or after school only.</li>
+      <li><span class="tos-dot"></span>You are responsible for following your school or workplace's acceptable use policy.</li>
+      <li><span class="tos-dot"></span>We are not liable for any consequences arising from use during class time.</li>
+      <li><span class="tos-dot"></span>All games remain the property of their respective creators. We are not affiliated with Winnipeg or any game developers featured here.</li>
+    </ul>
+
+    <div class="tos-age-note">
+      By continuing, you confirm you have read and agree to these terms, and that you are not currently in class.
+    </div>
+
+    <button class="tos-agree-btn" onclick="agreeToTos()">I agree — let me play</button>
+
+    <div class="tos-footer">Winnipeg School District &copy; 2026</div>
+  </div>
+</div>
+
+<div id="site-content">
+  <!-- Your actual site content goes here, or leave this empty if embedded in Google Sites -->
+  <p style="color:#888; font-size:0.9rem;">Site content loads here.</p>
+</div>
+
+<script>
+  function agreeToTos() {
+    localStorage.setItem('wsd-tos-agreed', 'true');
+    document.getElementById('tos-overlay').style.display = 'none';
+    document.getElementById('site-content').style.display = 'block';
+  }
+
+  if (localStorage.getItem('wsd-tos-agreed') === 'true') {
+    document.getElementById('tos-overlay').style.display = 'none';
+    document.getElementById('site-content').style.display = 'block';
+  }
+</script>
+</body>
+</html>
