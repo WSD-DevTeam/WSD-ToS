@@ -135,10 +135,13 @@
     color: #bbb;
   }
 
-  #site-content {
-    display: none;
-    padding: 3rem 2rem;
-    text-align: center;
+  #tos-overlay.hiding {
+    animation: fadeOut 0.4s ease forwards;
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-12px); }
   }
 </style>
 </head>
@@ -170,21 +173,16 @@
   </div>
 </div>
 
-<div id="site-content">
-  <!-- Your actual site content goes here, or leave this empty if embedded in Google Sites -->
-  <p style="color:#888; font-size:0.9rem;">Site content loads here.</p>
-</div>
-
 <script>
   function agreeToTos() {
     localStorage.setItem('wsd-tos-agreed', 'true');
-    document.getElementById('tos-overlay').style.display = 'none';
-    document.getElementById('site-content').style.display = 'block';
+    const overlay = document.getElementById('tos-overlay');
+    overlay.classList.add('hiding');
+    setTimeout(() => overlay.style.display = 'none', 400);
   }
 
   if (localStorage.getItem('wsd-tos-agreed') === 'true') {
     document.getElementById('tos-overlay').style.display = 'none';
-    document.getElementById('site-content').style.display = 'block';
   }
 </script>
 </body>
